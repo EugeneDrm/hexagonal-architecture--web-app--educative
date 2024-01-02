@@ -6,7 +6,7 @@ import lombok.NonNull;
 public record Money(@NonNull BigInteger amount) {
 
     public static final Money ZERO = Money.of(0L);
-    
+
     public static Money of(long amount) {
         return new Money(BigInteger.valueOf(amount));
     }
@@ -21,5 +21,17 @@ public record Money(@NonNull BigInteger amount) {
 
     public boolean isPositive() {
         return this.amount.compareTo(BigInteger.ZERO) > 0;
+    }
+
+    public boolean isPositiveOrZero() {
+        return this.amount.compareTo(BigInteger.ZERO) >= 0;
+    }
+
+    public Money minus(Money other) {
+        return new Money(amount.subtract(other.amount));
+    }
+
+    public Money plus(Money other) {
+        return new Money(amount.add(other.amount));
     }
 }

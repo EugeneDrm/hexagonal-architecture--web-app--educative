@@ -54,6 +54,6 @@ public class Account {
 
     private boolean mayWithdraw(Money money) {
         return Money.subtract(this.calculateBalance(), money)
-                .isPositive();
+                .isPositiveOrZero();
     }
 }
